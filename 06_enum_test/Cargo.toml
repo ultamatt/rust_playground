@@ -1,5 +1,5 @@
 [package]
-name = "ownership_test"
+name = "06_enum_test"
 version = "0.1.0"
 edition = "2018"
 

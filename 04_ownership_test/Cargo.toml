@@ -1,5 +1,5 @@
 [package]
-name = "testing_ground"
+name = "04_ownership_test"
 version = "0.1.0"
 edition = "2018"
 
