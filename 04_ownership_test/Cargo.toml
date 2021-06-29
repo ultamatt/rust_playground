@@ -1,5 +1,5 @@
 [package]
-name = "04_ownership_test"
+name = "ownership_test"
 version = "0.1.0"
 edition = "2018"
 

@@ -1,5 +1,5 @@
 [package]
-name = "05_struct_test"
+name = "struct_test"
 version = "0.1.0"
 edition = "2018"
 
