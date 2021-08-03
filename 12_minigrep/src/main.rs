@@ -3,8 +3,8 @@ use minigrep::Config;
 
 fn main() {
     //Collects all items passed in environment args to be collcted into a Vector of strings
-    let args: Vec <String> = env::args().collect();
-    let config = Config::new(&args).unwrap_or_else(|err| { //Unwrapping the error if there is one
+    //let args: Vec <String> = env::args().collect();
+    let config = Config::new(env::args()).unwrap_or_else(|err| { //Unwrapping the error if there is one
         eprintln!("Problem parsing arguments: {}", err);
         process::exit(1);
     });
