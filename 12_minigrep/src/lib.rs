@@ -1,14 +1,14 @@
 use std::{ fs, env }; //Using two standard libs, so using short form syntax
 use std::error::Error;
 
-//A structure to hold the query we wish to search said file for.
+///A structure to hold the query we wish to search said file for.
 pub struct Config {
     pub query: String,
     pub filename: String,
     pub case_sensitive: bool,
 }
 
-//Function implementation for this struct. Similar to interface classes in Java
+///Function implementation for this struct. Similar to interface classes in Java
 impl Config {
     //Takes a reference to an array of strings
     pub fn new (mut args: env::Args) -> Result<Config, &'static str> {
