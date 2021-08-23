@@ -12,26 +12,6 @@ pub struct Player {
 impl Player {
     //Takes a reference to an array of strings
     pub fn new (name: &str, x_or_o: bool) -> Result<Player,  &'static str> {
-        // if args.len() < 3 { //No parenthesis needed.
-        //     return Err("Please pass a string to find and a file to find it on.")
-        // }
-        // let query = args[1].clone();
-        // let filename = args[2].clone();
-
-        // args.next(); //We are assured to have the name of this program, no need to check
-        //
-        // let query = match args.next() {
-        //     Some(arg) => arg,
-        //     None => return Err("Didn't get a query string"),
-        // };
-        //
-        // let filename = match args.next() {
-        //     Some(arg) => arg,
-        //     None => return Err("Didn't get a file name"),
-        // };
-        //
-        // let case_sensitive = env::var("CASE_INSENSITIVE").is_err();
-        //println!("Case sense {}", case_sensitive);
         if((*name).is_empty()) {
             return Err("Please pass a player's name which is not blank");
         }

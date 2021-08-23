@@ -8,16 +8,24 @@ use game::Game;
 
 fn main() {
     println!("Please enter a name for Player One");
+    let mut daPlayerOne: Player = get_new_player();
 
-    let mut daPlayerOne: Player;
+    println!("Please enter a name for Player Two");
+    let mut daPlayerTwo: Player = get_new_player();
+
+    println!("Ready to play {} and {}?", daPlayerOne.name, daPlayerTwo.name)
+}
+
+fn get_new_player() -> Player {
+    let return_player: Player;
     loop {
-        let mut p1:String = String::new(); //Define p1 as a new String
+        let mut da_player:String = String::new(); //Define da_player as a new String
 
         io::stdin()
-            .read_line(&mut p1) //Read into the p1 variable, referencing the mutable address
+            .read_line(&mut da_player) //Read into the da_player variable, referencing the mutable address
             .expect("Failed to read line");
 
-        daPlayerOne = match Player::new(p1.trim(), true) {
+        return_player = match Player::new(da_player.trim(), true) {
             Ok(myPlayer) => myPlayer,
             Err(error) => {
                 println!("Please enter a valid string as your name");
@@ -26,5 +34,6 @@ fn main() {
         };
         break;
     }
-    println!("Ready Player One, AKA {}", daPlayerOne.name);
+    println!("Ready Player One, AKA {}", return_player.name);
+    return_player
 }
