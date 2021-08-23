@@ -1,20 +1,30 @@
-use std::{ env, process }; //Using two standard libs, so using short form syntax
-use tic_tac_toe::Player;
+use std::{ io, env, process }; //Using two standard libs, so using short form syntax
+
+mod player;
+use player::Player;
+
+mod game;
+use game::Game;
 
 fn main() {
-    // //Collects all items passed in environment args to be collcted into a Vector of strings
-    // //let args: Vec <String> = env::args().collect();
-    // let config = Config::new(env::args()).unwrap_or_else(|err| { //Unwrapping the error if there is one
-    //     eprintln!("Problem parsing arguments: {}", err);
-    //     process::exit(1);
-    // });
-    //
-    // //println!("Searching for {}", config.query);
-    // //println!("In file {}", config.filename);
-    //
-    // if let Err(e) = minigrep::run(config) {
-    //     eprintln!("Application error: {}", e);
-    //
-    //     process::exit(1);
-    // }
+    println!("Please enter a name for Player One");
+
+    let mut daPlayerOne: Player;
+    loop {
+        let mut p1:String = String::new(); //Define p1 as a new String
+
+        io::stdin()
+            .read_line(&mut p1) //Read into the p1 variable, referencing the mutable address
+            .expect("Failed to read line");
+
+        daPlayerOne = match Player::new(p1.trim(), true) {
+            Ok(myPlayer) => myPlayer,
+            Err(error) => {
+                println!("Please enter a valid string as your name");
+                continue;
+            },
+        };
+        break;
+    }
+    println!("Ready Player One, AKA {}", daPlayerOne.name);
 }

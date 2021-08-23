@@ -2,16 +2,14 @@ use std::{ fs, env }; //Using two standard libs, so using short form syntax
 use std::error::Error;
 
 ///A structure to hold Information on the player
-pub struct Player {
-    pub name: String,
-    pub score: u32,
-    pub x_or_o: bool, //true for O, false for X
+pub struct Game {
+    pub over: bool, //true for O, false for X
 }
 
 ///Function implementation for this struct. Similar to interface classes in Java
-impl Player {
+impl Game {
     //Takes a reference to an array of strings
-    pub fn new (name: &str, x_or_o: bool) -> Result<Player,  &'static str> {
+    pub fn new () -> Result<Game,  &'static str> {
         // if args.len() < 3 { //No parenthesis needed.
         //     return Err("Please pass a string to find and a file to find it on.")
         // }
@@ -33,10 +31,8 @@ impl Player {
         // let case_sensitive = env::var("CASE_INSENSITIVE").is_err();
         //println!("Case sense {}", case_sensitive);
 
-        Ok(Player {
-            name:String::from(name),
-            score:0,
-            x_or_o:x_or_o,
+        Ok(Game {
+            over:false,
         })
     }
 }
@@ -99,31 +95,31 @@ impl Player {
 //
 //     Ok(())
 // }
+// //
+// #[cfg(test)]
+// mod tests {
+//     use super::*;
 //
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn one_player_basic() {
-        let test_name = "Testy";
-        let myPlayer = Player::new(test_name, true).unwrap();
-        assert_eq!(test_name, myPlayer.name);
-        assert_eq!(0, myPlayer.score);
-    }
-
-    #[test]
-    fn two_player_basic() {
-        let test_name_one = "Testy One";
-        let test_name_two = "Testy Two";
-        let myPlayerOne = Player::new(test_name_one, true).unwrap();
-        let myPlayerTwo = Player::new(test_name_two, false).unwrap();
-        assert_eq!(test_name_one, myPlayerOne.name);
-        assert_eq!(0, myPlayerOne.score);
-
-        assert_eq!(test_name_two, myPlayerTwo.name);
-        assert_eq!(0, myPlayerTwo.score);
-
-        assert_ne!(myPlayerOne.name, myPlayerTwo.name);
-    }
-}
+//     #[test]
+//     fn one_player_basic() {
+//         let test_name = "Testy";
+//         let myGame = Game::new(test_name, true).unwrap();
+//         assert_eq!(test_name, myGame.name);
+//         assert_eq!(0, myGame.score);
+//     }
+//
+//     #[test]
+//     fn two_player_basic() {
+//         let test_name_one = "Testy One";
+//         let test_name_two = "Testy Two";
+//         let myGameOne = Game::new(test_name_one, true).unwrap();
+//         let myGameTwo = Game::new(test_name_two, false).unwrap();
+//         assert_eq!(test_name_one, myGameOne.name);
+//         assert_eq!(0, myGameOne.score);
+//
+//         assert_eq!(test_name_two, myGameTwo.name);
+//         assert_eq!(0, myGameTwo.score);
+//
+//         assert_ne!(myGameOne.name, myGameTwo.name);
+//     }
+// }
