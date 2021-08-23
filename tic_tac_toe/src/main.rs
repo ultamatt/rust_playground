@@ -7,26 +7,42 @@ mod game;
 use game::Game;
 
 fn main() {
+    //Get player's names and prep for game
     println!("Please enter a name for Player One");
-    let mut daPlayerOne: Player = get_new_player();
-
+    let mut daPlayerOne: Player = get_new_player(false);
     println!("Please enter a name for Player Two");
-    let mut daPlayerTwo: Player = get_new_player();
+    let mut daPlayerTwo: Player = get_new_player(true);
+    println!("{}", daPlayerOne.show_info());
+    println!("{}", daPlayerTwo.show_info());
+    println!("Ready to play?");
+    println!("");
+    println!("");
 
-    println!("Ready to play {} and {}?", daPlayerOne.name, daPlayerTwo.name);
-
+    //Get a new game and play
     let mut daGame: Game = Game::new().unwrap();
-
-
+    let mut turn:u32 = 0;
     loop {
-        daGame.draw();
-        let da_move = get_new_move();
-        daGame.claim(da_move.0, da_move.1);
+        turn += 1;
+        println!("Turn {}", turn);
         daGame.draw();
 
-        if(daGame.is_finished()){
-            break;
+        let mut x_or_o:bool = false;
+        if(turn%2 == 1){
+            x_or_o = true;
         }
+
+        if(x_or_o){
+            println!("{} it is your turn!", daPlayerTwo.show_info());
+        } else {
+            println!("{} it is your turn!", daPlayerOne.show_info());
+        }
+
+        let da_move = get_new_move();
+        daGame.claim(da_move.0, da_move.1, x_or_o);
+
+        // if(daGame.is_finished()){
+        //     break;
+        // }
     }
 }
 
@@ -39,6 +55,7 @@ fn get_new_move() -> (u8, u8) {
             .read_line(&mut da_row) //Read into the da_row variable, referencing the mutable address
             .expect("Failed to read line");
 
+        //TODO: Validate row is either 1, 2, or 3
         let row:u8 = match da_row.trim().parse() {
             Ok(myRow) => myRow,
             Err(error) => {
@@ -53,6 +70,7 @@ fn get_new_move() -> (u8, u8) {
             .read_line(&mut da_column) //Read into the da_column variable, referencing the mutable address
             .expect("Failed to read line");
 
+        //TODO: Validate column is either 1, 2, or 3
         let column:u8 = match da_column.trim().parse() {
             Ok(myColumn) => myColumn,
             Err(error) => {
@@ -68,7 +86,7 @@ fn get_new_move() -> (u8, u8) {
 }
 
 
-fn get_new_player() -> Player {
+fn get_new_player(x_or_o:bool) -> Player {
     let return_player: Player;
     loop {
         let mut da_player:String = String::new(); //Define da_player as a new String
@@ -77,10 +95,10 @@ fn get_new_player() -> Player {
             .read_line(&mut da_player) //Read into the da_player variable, referencing the mutable address
             .expect("Failed to read line");
 
-        return_player = match Player::new(da_player.trim(), true) {
+        return_player = match Player::new(da_player.trim(), x_or_o) {
             Ok(myPlayer) => myPlayer,
             Err(error) => {
-                println!("Please enter a valid string as your name");
+                println!("\n\n\t--> Please enter a valid string as your name");
                 continue;
             },
         };

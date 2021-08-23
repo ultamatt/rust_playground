@@ -22,6 +22,22 @@ impl Player {
             x_or_o:x_or_o,
         })
     }
+
+    pub fn show_info(&self) -> String {
+        let marker: String = {
+            if(self.x_or_o){
+                String::from("X")
+            } else {
+                String::from("O")
+            }
+        };
+
+        let mut result:String = String::from("Player: ");
+        result.push_str(&self.name);
+        result.push_str(" is ");
+        result.push_str(&marker);
+        result
+    }
 }
 
 // pub fn search<'a>(

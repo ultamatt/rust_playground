@@ -54,13 +54,17 @@ impl Game {
         }
     }
 
-    pub fn claim (&mut self, row:u8, column:u8) {
+    pub fn claim (&mut self, row:u8, column:u8, x_or_o:bool) {
         // Ugh, fucking vector of vectors.
         println!("You want r{}, c{}", row, column);
         for (dis_row_num, dis_row_val) in self.board.iter_mut().enumerate() {
             for (dis_column_num, dis_column_val) in dis_row_val.iter_mut().enumerate() {
-                if(dis_row_num as u8 == row && dis_column_num as u8 == column){
-                    *dis_column_val = String::from("X");
+                if(dis_row_num as u8 == (row - 1) && dis_column_num as u8 == (column - 1)){
+                    if(x_or_o){
+                        *dis_column_val = String::from("X");
+                    } else {
+                        *dis_column_val = String::from("O");
+                    }
                 }
             }
         }
