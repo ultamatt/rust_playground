@@ -4,6 +4,7 @@ use std::error::Error;
 ///A structure to hold Information on the player
 pub struct Game {
     pub over: bool, //true for O, false for X
+    pub board: Vec< Vec <String> >
 }
 
 ///Function implementation for this struct. Similar to interface classes in Java
@@ -33,7 +34,40 @@ impl Game {
 
         Ok(Game {
             over:false,
+            board: vec![
+                vec![String::from(""), String::from(""), String::from("")],
+                vec![String::from(""), String::from(""), String::from("")],
+                vec![String::from(""), String::from(""), String::from("")]
+            ]
         })
+    }
+
+    pub fn draw (&self) {
+        println!("Current Game State:\r\n");
+        println!("   1   2  3 ");
+        println!("  ----------");
+        let mut row_num = 0;
+        for x in &self.board {
+            row_num = row_num + 1;
+            println!("{} | {} | {} | {} |", row_num, x[0], x[1], x[2]);
+            println!("  ----------");
+        }
+    }
+
+    pub fn claim (&mut self, row:u8, column:u8) {
+        // Ugh, fucking vector of vectors.
+        println!("You want r{}, c{}", row, column);
+        for (dis_row_num, dis_row_val) in self.board.iter_mut().enumerate() {
+            for (dis_column_num, dis_column_val) in dis_row_val.iter_mut().enumerate() {
+                if(dis_row_num as u8 == row && dis_column_num as u8 == column){
+                    *dis_column_val = String::from("X");
+                }
+            }
+        }
+    }
+
+    pub fn is_finished (&self) -> bool{
+        true
     }
 }
 
