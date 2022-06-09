@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "testing_ground"
+name = "variables_test"
 version = "0.1.0"

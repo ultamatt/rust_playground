@@ -4,7 +4,6 @@
 */
 
 fn main() {
-
     do_variables();
     do_data_types();
     do_functions();
@@ -12,9 +11,9 @@ fn main() {
 }
 
 fn do_variables(){
-    ////////////////
+    /*             */
     //3.1 VARIABLES!
-    ////////////////
+    /*             */
 
     //VARIABLES and MUTABILITY
     //For a variable to be changed, is must MUTABLE
@@ -51,17 +50,17 @@ fn do_variables(){
 
 fn do_data_types(){
 
-    ////////////////
+    /*             */
     //3.2 DATA TYPES!
-    ////////////////
+    /*             */
 
     // Data types in rust are either SCALAR or COMPOUND
     // SCALAR types represent ONE value
-    /// Examples: integers, floating-point numbers, Booleans, and characters
+    // Examples: integers, floating-point numbers, Booleans, and characters
     // COMPOUND types group multiple values into one type.
-    /// Examples: tuples and arrays.
+    // Examples: tuples and arrays.
 
-    ////////////////////
+    /*             */
     // SCALAR TYPES !!
     //Integers, it's basic whole numbers, positive or negative
     println!("\n--INTEGERS--");
@@ -94,7 +93,7 @@ fn do_data_types(){
     let jchar = '水';
     println!("char z {} char big Z {} emoji cat {} japanese {}", cchar, zchar, heart_eyed_cat_char, jchar);
 
-    ////////////////////
+    /*             */
     // COMPOUND TYPES!!
     // Tuples are groupings of scalar variables from above
     println!("\n--TUPLES--");
@@ -108,17 +107,18 @@ fn do_data_types(){
     //Arrays
     // All the elements in the array MUST be the SAME TYPE
     println!("\n--ARRAYS--");
-    let daArray = [1, 2, 3, 4, 5];
+    let da_array = [1, 2, 3, 4, 5];
+    println!("{} is the first element in a plain array", da_array[0]);
     // You can also define the type and number of elements up front too
-    let typeDefinedArray: [i32; 5] = [1, 2, 3, 4, 5];
-    println!("{} is the last element in this array", typeDefinedArray[4]);
+    let type_defined_array: [i32; 5] = [1, 2, 3, 4, 5];
+    println!("{} is the last element in this array", type_defined_array[4]);
 }
 
 fn do_functions(){
 
-    ////////////////
+    /*             */
     //3.3 FUNCTIONS!
-    ////////////////
+    /*             */
     println!("\n--FUNCTIONS--");
     another_function(5, 6);
 }
@@ -134,7 +134,7 @@ fn another_function(x: i32, y: i32) {
     //Statements are instructions that perform some action and do not return a value.
     //Expressions evaluate to a resulting value, they return something.
     // In c, you can do this "x = y = 6" because assignment returns the value you assigned.
-    /// NOT SO in RUST
+    // NOT SO in RUST
     let new_x = 5;
 
     let new_y = {
@@ -160,9 +160,9 @@ fn ten() -> i32 {
 }
 
 fn do_flow_control(){
-    ////////////////
+    /*             */
     //3.5 FLOW CONTROL
-    ////////////////
+    /*             */
     println!("\n--FLOW CONTROL--");
     let condition = true;
     let mut number = if condition { 5 } else { 6 };
