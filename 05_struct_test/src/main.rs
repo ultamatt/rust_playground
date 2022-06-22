@@ -57,9 +57,7 @@ impl Rectangle {
     }
 }
 
-
 fn main() {
-
     //Entire instance is mutable, rust won't let you do individual fields here
     let mut user1 = User {
         email: String::from("someone@example.com"),
@@ -80,7 +78,6 @@ fn main() {
         ..user2 //This is a struct update syntax
     };
 
-
     println!("\n--STRUCTS AND STRUCT UPDATE SYNTAX--");
     // dbg (debug) macro is super cool. Prints line number and debug info
     //  all this comes over stderr though, so watch out!
@@ -88,7 +85,6 @@ fn main() {
 
     //println!("user2 should error {}", user2.email); // <-- Doesn't exist as user2 anymore. Data got moved
     println!("user3 email {}", user3.email);
-
 
     let black = Color(0, 0, 0);
     let origin = Point(0, 0, 0);
