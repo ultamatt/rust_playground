@@ -8,9 +8,10 @@ fn main() {
     do_data_types();
     do_functions();
     do_flow_control();
+    do_loops();
 }
 
-fn do_variables(){
+fn do_variables() {
     /*             */
     //3.1 VARIABLES!
     /*             */
@@ -27,7 +28,7 @@ fn do_variables(){
     // CONSTANTS
     println!("\n--CONSTANTS--");
     const MAX_POINTS: u32 = 100_000; //Constants are always immutable, must have types
-    // Rust allows understores '_' inside numbers to improve readability
+                                     // Rust allows understores '_' inside numbers to improve readability
     println!("The MAX_POINTS constant is: {}", MAX_POINTS);
 
     // SHADOWING
@@ -40,23 +41,26 @@ fn do_variables(){
     // this is mainly useful to operate on a variable, but still make it IMMUTABLE
     // similar to state manipulation in redux
     println!("The value of x is: {}", x);
-    // it's also good for variable type reassignment
+    // it's also good for variable ->type<- reassignment
     let spaces = "   "; //a string
     let spaces = spaces.len(); //a number
+
     // let mut spaces = "   ";  <-- This wont work, because non-shadowing won't let us
     // spaces = spaces.len();        change the type assigned
+
     println!("The number of spaces are: {}", spaces);
 }
 
-fn do_data_types(){
-
+fn do_data_types() {
     /*             */
     //3.2 DATA TYPES!
     /*             */
 
     // Data types in rust are either SCALAR or COMPOUND
+    //
     // SCALAR types represent ONE value
     // Examples: integers, floating-point numbers, Booleans, and characters
+    //
     // COMPOUND types group multiple values into one type.
     // Examples: tuples and arrays.
 
@@ -91,7 +95,10 @@ fn do_data_types(){
     let zchar = 'ℤ';
     let heart_eyed_cat_char = '😻';
     let jchar = '水';
-    println!("char z {} char big Z {} emoji cat {} japanese {}", cchar, zchar, heart_eyed_cat_char, jchar);
+    println!(
+        "char z {} char big Z {} emoji cat {} japanese {}",
+        cchar, zchar, heart_eyed_cat_char, jchar
+    );
 
     /*             */
     // COMPOUND TYPES!!
@@ -100,7 +107,10 @@ fn do_data_types(){
     let tup: (i32, f64, bool, char) = (500, 6.4, true, '赤');
     // the whole variable now has all 4 elements. You have to use destructuring (below) to grab values out
     let (number, float, boolean, character) = tup;
-    println!("number {} float {} boolean {} japanese {}", number, float, boolean, character);
+    println!(
+        "number {} float {} boolean {} japanese {}",
+        number, float, boolean, character
+    );
     // You can also use dot notation to grab individual elements
     println!("{} is my favorite number", tup.0);
 
@@ -111,11 +121,17 @@ fn do_data_types(){
     println!("{} is the first element in a plain array", da_array[0]);
     // You can also define the type and number of elements up front too
     let type_defined_array: [i32; 5] = [1, 2, 3, 4, 5];
-    println!("{} is the last element in this array", type_defined_array[4]);
+    println!(
+        "{} is the last element in this array",
+        type_defined_array[4]
+    );
+    //Arrays are on the STACK and not the HEAP
+    // Arrays are fixed in size, so you might wanna use a vector instead
+    // Once an array is created it cannot be resized which means the array is STATIC.
+    // a MUTABLE array can have it's contents changed, but not resized!
 }
 
-fn do_functions(){
-
+fn do_functions() {
     /*             */
     //3.3 FUNCTIONS!
     /*             */
@@ -131,8 +147,9 @@ fn another_function(x: i32, y: i32) {
     println!("The value of y is: {}", y);
 
     //STATEMENTS vs EXPRESSIONS
-    //Statements are instructions that perform some action and do not return a value.
-    //Expressions evaluate to a resulting value, they return something.
+    //  Statements are instructions that perform some action and do not return a value.
+    //  Expressions evaluate to a resulting value, they return something.
+    //
     // In c, you can do this "x = y = 6" because assignment returns the value you assigned.
     // NOT SO in RUST
     let new_x = 5;
@@ -159,7 +176,7 @@ fn ten() -> i32 {
     return 10;
 }
 
-fn do_flow_control(){
+fn do_flow_control() {
     /*             */
     //3.5 FLOW CONTROL
     /*             */
@@ -186,7 +203,11 @@ fn do_flow_control(){
     } else {
         println!("number is not divisible by 4, 3, or 2");
     }
+}
 
+fn do_loops () {
+    println!("\n--LOOPS--");
+    
     //LOOPS
     let mut counter = 0;
 
@@ -201,7 +222,29 @@ fn do_flow_control(){
 
     println!("The result is {}", result);
 
+    // You can name loops to refer to them by name
+    let mut count = 0;
+    'counting_up: loop {
+        println!("count = {}", count);
+        let mut remaining = 10;
+
+        loop {
+            println!("remaining = {}", remaining);
+            if remaining == 9 {
+                break;
+            }
+            if count == 2 {
+                break 'counting_up;
+            }
+            remaining -= 1;
+        }
+
+        count += 1;
+    }
+    println!("End count = {}", count);
+
     //While Loop
+    let mut number = 5;
     while number != 0 {
         println!("{}!", number);
         number -= 1;

@@ -1,15 +1,16 @@
-
 /*
     Each value in Rust has a variable that’s called its owner.
     There can only be one owner at a time.
     When the owner goes out of scope, the value will be dropped.
 */
-fn main() {
 
-    let immutable_string = "Hello Immutable World!"; //Declared here, immutable
+fn main() {
+    //Declared here, immutable
+    let immutable_string = "Hello Immutable World!";
     println!("{}", immutable_string);
 
-    let mut mutable_string = String::from("Hello!"); //Declared with string from static method, mutable
+    //Declared with string from static method, mutable
+    let mut mutable_string = String::from("Hello!");
     mutable_string.push_str(" Mutable World!!");
     println!("{}", mutable_string);
 
