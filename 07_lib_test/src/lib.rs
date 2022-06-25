@@ -1,4 +1,13 @@
+// Chapter 7
+// CRATES!
+// Two types of projects, binaries and libraries
+//  Binaries have a main.rs
+//  Libraries don't!
+// -> It's possible to have both a main.rs and a lib.rs, which means your package has two crates!
+
+
 mod front_of_house {
+    //Public modules can be used by folks using this crate
     pub mod hosting {
         pub fn add_to_waitlist() {
             println!("You're on the waitlist");
@@ -6,7 +15,7 @@ mod front_of_house {
 
         fn seat_at_table() {}
     }
-
+    //Private modules can't be used outside this library file
     mod serving {
         fn take_order() {}
 
@@ -35,13 +44,11 @@ mod back_of_house {
             }
         }
 
-        pub fn say_order(&self){
+        pub fn say_order(&self) {
             println!("I'd like {} toast please", self.toast);
         }
     }
 }
-
-
 
 use crate::front_of_house::hosting;
 
