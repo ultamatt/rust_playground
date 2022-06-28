@@ -2,8 +2,8 @@
     Working on handling errors!
 */
 use std::fs::File;
-use std::io::ErrorKind;
 use std::io;
+use std::io::ErrorKind;
 use std::io::Read;
 
 fn main() {
@@ -18,7 +18,7 @@ fn main() {
     read_username_from_file_2();
 }
 
-fn do_fileopen(){
+fn do_fileopen() {
     //let f = File::open("hello.txt");
 
     //Can do matching on the result here
@@ -75,6 +75,7 @@ fn read_username_from_file() -> Result<String, io::Error> {
 }
 
 fn read_username_from_file_2() -> Result<String, io::Error> {
+    // ? operatore is short for 'try this and if it errors, return error, otherwise continue
     let mut f = File::open("hello.txt")?;
     let mut s = String::new();
     f.read_to_string(&mut s)?;
