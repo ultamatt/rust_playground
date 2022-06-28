@@ -7,15 +7,51 @@ fn main() {
     do_hashmap();
 }
 
-fn do_hashmap(){
-    //A hashmap is basically JSON
-    let mut scores = HashMap::new();
+fn do_vectors() {
+    //A vector is basically a better array
+    // When declaring it empty, you gotta tell what type it's gonna be
+    let mut v: Vec<i32> = Vec::new();
+    v.push(1);
+    v.push(2);
+    println!("{:?}", v);
 
-    scores.insert(String::from("Blue"), 10);
-    scores.insert(String::from("Yellow"), 50);
+    for i in &v {
+        println!("{}", i);
+    }
+
+    //Can declare it like this too, in place
+    // And since we have elements here, we don't need to say what type it holds!
+    let mut v2 = vec![1, 2, 3, 4, 5];
+    v2.push(6);
+
+    // using &v[N] vs v.get(N), using the first way will panic if out of bounds, get will return None()
+    let third: &i32 = &v2[2]; //Reference strictrly, might not be awesome
+    println!("The third element is {}, via direct ref", third);
+
+    match v2.get(2) {
+        Some(third) => println!("The third element is {}, via built in getter", third),
+        None => println!("There is no third element."),
+    }
+
+    //Yes, vector elements must all be the same type.
+    #[derive(Debug)]
+    enum SpreadsheetCell {
+        Int(i32),
+        Float(f64),
+        Text(String),
+    }
+
+    // ... but that type can be an enum, which can be many different types
+    // this is how to get around that
+    let row = vec![
+        SpreadsheetCell::Int(3),
+        SpreadsheetCell::Text(String::from("blue")),
+        SpreadsheetCell::Float(10.12),
+    ];
+    println!("{:?}", row);
 }
 
-fn do_strings(){
+fn do_strings() {
     //Default way to make a new string
     let mut s = String::new();
 
@@ -46,43 +82,17 @@ fn do_strings(){
     }
 }
 
-fn do_vectors(){
-    //A vector is basically a better array
-    let mut v: Vec<i32> = Vec::new();
-    v.push(1);
-    v.push(2);
-    println!("{:?}", v);
+fn do_hashmap() {
+    //A hashmap is basically JSON
+    let mut scores = HashMap::new();
 
-    for i in &v {
-        println!("{}", i);
-    }
+    scores.insert(String::from("Blue"), 10);
+    scores.insert(String::from("Yellow"), 50);
 
-    //Can declare it like this too, in place
-    let mut v2 = vec![1, 2, 3, 4, 5];
-    v2.push(6);
+    let teams = vec![String::from("Blue"), String::from("Yellow")];
+    let initial_scores = vec![10, 50];
 
-    let third: &i32 = &v2[2]; //Reference strictrly, might not be awesome
-    println!("The third element is {}, via direct ref", third);
-
-    match v2.get(2) {
-        Some(third) => println!("The third element is {}, via built in getter", third),
-        None => println!("There is no third element."),
-    }
-
-    //Yes, vector elements must all be the same type.
-    #[derive(Debug)]
-    enum SpreadsheetCell {
-        Int(i32),
-        Float(f64),
-        Text(String),
-    }
-
-    // ... but that type can be an enum, which can be many different types
-    // this is how to get around that
-    let row = vec![
-        SpreadsheetCell::Int(3),
-        SpreadsheetCell::Text(String::from("blue")),
-        SpreadsheetCell::Float(10.12),
-    ];
-    println!("{:?}", row);
+    let mut more_scores: HashMap<_, _> =
+        teams.into_iter().zip(initial_scores.into_iter()).collect();
+    dbg!(more_scores);
 }
