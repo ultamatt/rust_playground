@@ -27,8 +27,9 @@ fn do_variables() {
 
     // CONSTANTS
     println!("\n--CONSTANTS--");
-    const MAX_POINTS: u32 = 100_000; //Constants are always immutable, must have types
-                                     // Rust allows understores '_' inside numbers to improve readability
+    const MAX_POINTS: u32 = 100_000; 
+    //Constants are always immutable, must have types                                 
+    // Rust allows understores '_' inside numbers to improve readability
     println!("The MAX_POINTS constant is: {}", MAX_POINTS);
 
     // SHADOWING
@@ -161,6 +162,7 @@ fn another_function(x: i32, y: i32) {
         // If we added a semicolon, it'd be a statement and we'd not get anything back
     };
 
+    println!("The value of new_x is: {}", new_x);
     println!("The value of new_y is: {}", new_y);
     println!("This should say the number five: {}", five());
     println!("This should say the number ten: {}", ten());
@@ -185,6 +187,9 @@ fn do_flow_control() {
     let mut number = if condition { 5 } else { 6 };
 
     println!("The value of number is: {}", number);
+    number = number + 1;
+    println!("The value of number is now: {}", number);
+    
 
     //IF and ELSE and ELSE IF
     //Conditions in rust MUST be a boolean. No coercion here
